@@ -1,0 +1,119 @@
+﻿<dxw:DXWindow 
+    x:Class="GridWithExpressions.AppearanceEditWindow" 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    Title="Format Conditions Editor" 
+    Height="600" 
+    Width="900"
+    WindowStartupLocation="CenterScreen" 
+    xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" 
+    xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+    xmlns:dxw="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxet="http://schemas.devexpress.com/winfx/2008/xaml/editors/themekeys"
+    xmlns:local="clr-namespace:GridWithExpressions"
+    xmlns:win="clr-namespace:System.Windows;assembly=PresentationCore"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
+    ResizeMode="NoResize"
+    >
+    <dxw:DXWindow.Resources>
+        <col:ArrayList x:Key="intList">
+            <sys:Int32>8</sys:Int32>
+            <sys:Int32>9</sys:Int32>
+            <sys:Int32>10</sys:Int32>
+            <sys:Int32>11</sys:Int32>
+            <sys:Int32>12</sys:Int32>
+            <sys:Int32>14</sys:Int32>
+            <sys:Int32>16</sys:Int32>
+            <sys:Int32>18</sys:Int32>
+            <sys:Int32>20</sys:Int32>
+            <sys:Int32>22</sys:Int32>
+            <sys:Int32>24</sys:Int32>
+            <sys:Int32>26</sys:Int32>
+            <sys:Int32>28</sys:Int32>
+            <sys:Int32>36</sys:Int32>
+            <sys:Int32>48</sys:Int32>
+            <sys:Int32>72</sys:Int32>
+        </col:ArrayList>
+        <local:InternalStateConverter x:Key="internalStateConverter"></local:InternalStateConverter>
+    </dxw:DXWindow.Resources>
+    <Grid>
+        <dxlc:LayoutControl>
+            <dxlc:LayoutGroup Name="expressionGroup" Orientation="Vertical" Header="Expression String" View="GroupBox" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="560">
+            </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup Name="layoutControl1" Orientation="Vertical">
+                    <dxlc:LayoutGroup Header="Expression format conditions" View="GroupBox">
+                        <dxlc:LayoutGroup Orientation="Horizontal" Width="Auto" View="Group">
+                            <dxlc:LayoutItem Name="layoutItem1" VerticalAlignment="Stretch">  
+                            <dxe:ListBoxEdit Name="expressionsListBox" ItemsSource="{Binding}" EditValueChanged="OptionEditValueChanged">
+                                <dxe:ListBoxEdit.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock FontSize="12" Text="{Binding ExpressionString}"/>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </dxe:ListBoxEdit.ItemTemplate>
+                            </dxe:ListBoxEdit>
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutGroup  Orientation="Vertical">
+                                <RepeatButton 
+                                    Height="25" 
+                                    Width="25" 
+                                    Template="{DynamicResource {dxet:TrackBarEditThemeKey ResourceKey=RightStepButtonTemplate}}"
+                                    Click="AddOptionClick"
+                                    Name="addButton"></RepeatButton>
+                                <RepeatButton 
+                                    Height="25" 
+                                    Width="25" 
+                                    IsEnabled="{Binding OptionsCollection.Count, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}, Converter={StaticResource internalStateConverter}}" 
+                                    Template="{DynamicResource {dxet:TrackBarEditThemeKey ResourceKey=LeftStepButtonTemplate}}"
+                                    Click="RemoveOptionClick"
+                                    Name="deleteButton"/>
+                            </dxlc:LayoutGroup>
+                        </dxlc:LayoutGroup>
+                    </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup Header="Appearance Properties" View="GroupBox" HorizontalAlignment="Stretch">
+                    <dxlc:LayoutGroup Orientation="Vertical" View="Group"  HorizontalAlignment="Stretch">
+                            <dxlc:LayoutItem Label="BackColor">
+                                    <dxe:PopupColorEdit Name="backColorEdit" EditValue="{Binding SelectedItem.BackgroundBrush.Color, ElementName=expressionsListBox, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="0" Grid.Column="1"></dxe:PopupColorEdit>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="ForeColor">
+                                    <dxe:PopupColorEdit Name="foreColorEdit" EditValue="{Binding SelectedItem.ForegroundBrush.Color, ElementName=expressionsListBox, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="1"></dxe:PopupColorEdit>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="FontFamily">
+                                    <dxe:FontEdit Grid.Row="2" Grid.Column="1" EditValue="{Binding SelectedItem.CurrentFontFamily, ElementName=expressionsListBox, Mode=TwoWay}" Text="Choose Font..." Name="fontEdit"></dxe:FontEdit>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="FontStyle">
+                                    <dxe:ComboBoxEdit Grid.Row="3" Grid.Column="1" EditValue="{Binding SelectedItem.CurrentFontStyle, ElementName=expressionsListBox, Mode=TwoWay}" Text="Choose FontStyle..." Name="comboFontStyle">
+                                        <dxe:ComboBoxEditItem Content="{Binding Source={x:Static Member=FontStyles.Normal}}"/>
+                                        <dxe:ComboBoxEditItem Content="{Binding Source={x:Static Member=FontStyles.Italic}}"/>
+                                        <dxe:ComboBoxEditItem Content="{Binding Source={x:Static Member=FontStyles.Oblique}}"/>
+                                    </dxe:ComboBoxEdit>
+                                </dxlc:LayoutItem >
+                            <dxlc:LayoutItem Label="FontSize">
+                                    <dxe:ComboBoxEdit 
+                                    Grid.Row="4" 
+                                    EditValue="{Binding SelectedItem.CurrentFontSize, ElementName=expressionsListBox, Mode=TwoWay}" 
+                                    Grid.Column="1" 
+                                    Name="fontSizeCombo" 
+                                    ItemsSource="{StaticResource intList}">
+                                <dxe:ComboBoxEdit.EditTemplate>
+                                    <ControlTemplate>
+                                        <dxe:TextEdit Text="{Binding EditValue, Mode=TwoWay}" Mask="([6-9]|[1-9][0-9]|100)" MaskType="RegEx"></dxe:TextEdit>
+                                    </ControlTemplate>
+                                </dxe:ComboBoxEdit.EditTemplate>
+                            </dxe:ComboBoxEdit>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="ApplyToRow">
+                                    <dxe:CheckEdit Grid.Row="5"  Grid.Column="1" Name="applyToRowCheck" EditValue="{Binding SelectedItem.ApplyToRow, ElementName=expressionsListBox, Mode=TwoWay}" VerticalAlignment="Center" HorizontalAlignment="Center"></dxe:CheckEdit>
+                                </dxlc:LayoutItem>
+                            <dxlc:LayoutGroup Orientation="Horizontal" View="Group">
+                                <Button Grid.Row="6" Grid.Column="0" Height="30" Content="Save" Click="SaveButtonClick" HorizontalAlignment="Stretch"></Button>
+                                <Button Grid.Row="7" Grid.Column="1" Height="30" Content="Cancel" HorizontalAlignment="Stretch" Click="CancelButtonClick" ></Button>
+                            </dxlc:LayoutGroup> 
+                        </dxlc:LayoutGroup>
+                </dxlc:LayoutGroup>
+            </dxlc:LayoutGroup>
+        </dxlc:LayoutControl>
+    </Grid>
+</dxw:DXWindow>

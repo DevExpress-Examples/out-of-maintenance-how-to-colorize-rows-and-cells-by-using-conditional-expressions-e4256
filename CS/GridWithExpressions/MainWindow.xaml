@@ -1,0 +1,48 @@
+﻿<dxw:DXWindow 
+    x:Class="GridWithExpressions.MainWindow" 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+    Title="MainWindow" 
+    Height="350" 
+    Width="525"
+    xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+    xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+    xmlns:dxw="http://schemas.devexpress.com/winfx/2008/xaml/core"
+    xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:exp="clr-namespace:GridWithExpressions">
+    <Grid>
+        <dxg:GridControl AutoPopulateColumns="True" Name="gridControl1" ItemsSource="{Binding Tasks, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Window}}">
+            <dxg:GridControl.View>
+                <dxg:TableView Name="tableView1" ShowTotalSummary="True" ShowGroupPanel="False">
+                    <i:Interaction.Behaviors>
+                        <exp:ExpressionColumnBehavior>
+                            <exp:ExpressionColumnBehavior.StylesCollection>
+                                <exp:StyleOption 
+                                    BackgroundBrush="DarkGray" 
+                                    CurrentFontFamily="Andalus" 
+                                    CurrentFontStyle="Oblique" 
+                                    CurrentFontSize="16"
+                                    ForegroundBrush="Chocolate" 
+                                    FieldName="Name" 
+                                    ExpressionString="[IsCompleted] == True"
+                                    ApplyToRow="True">
+                                </exp:StyleOption>
+                                <exp:StyleOption 
+                                    BackgroundBrush="Black" 
+                                    CurrentFontFamily="Consolas" 
+                                    CurrentFontStyle="Normal"
+                                    CurrentFontSize="24"
+                                    ForegroundBrush="Bisque" 
+                                    FieldName="Name" 
+                                    ExpressionString="[IsCompleted] == False"
+                                    ApplyToRow="False">
+                                </exp:StyleOption>
+                            </exp:ExpressionColumnBehavior.StylesCollection>
+                        </exp:ExpressionColumnBehavior>
+                    </i:Interaction.Behaviors>
+                </dxg:TableView>
+            </dxg:GridControl.View>
+        </dxg:GridControl>
+    </Grid>
+</dxw:DXWindow>
