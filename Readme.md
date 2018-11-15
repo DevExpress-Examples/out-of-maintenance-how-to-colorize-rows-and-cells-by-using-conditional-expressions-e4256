@@ -1,3 +1,9 @@
+<!-- default file list -->
+*Files to look at*:
+
+* **[MainWindow.xaml](./CS/GridWithExpressions/MainWindow.xaml) (VB: [MainWindow.xaml](./VB/GridWithExpressions/MainWindow.xaml))**
+* [Task.cs](./CS/GridWithExpressions/Task.cs) (VB: [Task.vb](./VB/GridWithExpressions/Task.vb))
+<!-- default file list end -->
 # How to: Colorize rows and cells by using conditional expressions
 
 
