@@ -1,4 +1,4 @@
-Microsoft Visual Studio Solution File, Format Version 14.00
+﻿Microsoft Visual Studio Solution File, Format Version 14.00
 # Visual Studio 16
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "GridWithExpressions", "GridWithExpressions\GridWithExpressions.Net5.vbproj", "{A5BA38BF-DACF-4257-B9E5-0CB105CA61FB}"
 EndProject
