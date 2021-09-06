@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 14.00
-# Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GridWithExpressions", "GridWithExpressions\GridWithExpressions.csproj", "{A5BA38BF-DACF-4257-B9E5-0CB105CA61FB}"
+# Visual Studio 16
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GridWithExpressions", "GridWithExpressions\GridWithExpressions.Net5.csproj", "{A5BA38BF-DACF-4257-B9E5-0CB105CA61FB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
